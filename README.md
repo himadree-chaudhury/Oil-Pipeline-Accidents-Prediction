@@ -1,31 +1,34 @@
 # 🛢️ US DOT Pipeline Accident Analysis & Prediction
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Scikit-Learn](https://img.shields.io/badge/Library-Scikit--Learn-orange)
 ![Gradio](https://img.shields.io/badge/Interface-Gradio-yellow)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
 
 ## 📌 Project Overview
-This project analyzes the **US Department of Transportation (DOT) Pipeline Accidents dataset**. The goal is to investigate historical accident data and build a Machine Learning model that predicts the **primary cause of an accident** (e.g., Corrosion, Excavation Damage, Equipment Failure) based on factors like location, pipeline type, costs, and commodity released.
+This project analyzes the **US Department of Transportation (DOT) Pipeline Accidents dataset**. 
 
-The project includes a full data science pipeline—from data cleaning to model evaluation—and features an interactive **Gradio web interface** deployed to Hugging Face Spaces.
+While initial exploration involved classifying accident causes, the final objective evolved to building a **Regression Model** to predict the severity of an accident. Specifically, the model predicts the **Unintentional Release (in Barrels)** based on factors like pipeline type, location, material failure details, and recovery efforts.
+
+The project includes a full data science pipeline—from data cleaning and complex model comparison to an interactive **Gradio web interface**.
 
 ## 📂 Dataset
 * **Source:** [Kaggle - US DOT Pipeline Accidents](https://www.kaggle.com/datasets/usdot/pipeline-accidents)
 * **Description:** Records of pipeline accidents in the US from 2010 to present.
+* **Target Variable:** `Unintentional Release (Barrels)`
 * **Key Features Used:**
-    * `Pipeline Location` (Onshore/Offshore)
-    * `Pipeline Type` (Above/Underground)
-    * `Liquid Type` (Crude Oil, Refined Products, etc.)
-    * `Net Loss (Barrels)`
-    * `All Costs` (Financial impact)
-    * `Liquid Ignition` & `Explosion` indicators
+    * `Pipeline Type` (Above/Underground, Tank)
+    * `Liquid Type` (Crude Oil, Biofuel, HVL, etc.)
+    * `Location Data` (State, Latitude, Longitude)
+    * `Cause Category & Subcategory` (e.g., Corrosion, Internal)
+    * `Pipeline Shutdown` (Yes/No)
+    * `Liquid Recovery` (Barrels recovered during cleanup)
 
 ## ⚙️ Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/himadree-chaudhury/Oil-Pipeline-Accidents-Prediction.git
+    git clone [https://github.com/himadree-chaudhury/Oil-Pipeline-Accidents-Prediction.git](https://github.com/himadree-chaudhury/Oil-Pipeline-Accidents-Prediction.git)
     cd Oil-Pipeline-Accidents-Prediction
     ```
 
@@ -43,8 +46,12 @@ The project includes a full data science pipeline—from data cleaning to model 
     gradio
     ```
 
-3.  **Data Setup:**
-    Ensure `database.csv` is placed in the root directory of the project.
+3.  **Generate the Model:**
+    Before running the app, you must train the model and generate the pickle file.
+    ```bash
+    python train_model.py
+    ```
+    *This will create a `linear_model.pkl` file in your directory.*
 
 ## 🚀 Usage
 
